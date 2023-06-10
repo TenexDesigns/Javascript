@@ -1,8 +1,61 @@
-const wait = argumentTime => new Promise(resolve => {
-    setTimeout(resolve, argumentTime);
-});
+We just create a function  the receives an arument but the function returns the promise. 
+So the promise will be able to use the argument passed to the function
 
-wait(3000).then(() => console.log("Thanks for waiting!"));
+function fetchData(endpoint) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(`Data from ${endpoint}`);
+    }, 1000);
+  });
+}
+
+
+fetchData('http:google.com').then((data)=>{console.log(data)}).catch((error)=>{console.log(error)})
+
+
+code explained
+----------------------------------------------------------------------
+The code you provided is a function named fetchData that returns a Promise. Promises are a built-in feature in JavaScript that allow you to work with asynchronous operations in a more organized and manageable way.
+
+The format used to create a Promise is as follows:
+
+javascript
+Copy code
+new Promise((resolve, reject) => {
+  // Asynchronous operation
+  // If the operation is successful, call resolve(value)
+  // If the operation fails, call reject(error)
+});
+In the fetchData function, a new Promise is created. Inside the Promise constructor, there is an asynchronous operation simulated using setTimeout. After a delay of 1000 milliseconds (1 second), the operation will resolve the Promise with a message that includes the endpoint parameter.
+
+Here's a breakdown of the code:
+
+The fetchData function takes an endpoint parameter.
+It creates a new Promise, which receives two arguments: resolve and reject. These arguments are functions provided by the Promise constructor.
+Inside the Promise, there is a setTimeout function that represents the asynchronous operation. It waits for 1000 milliseconds and then calls resolve with a string that includes the endpoint parameter.
+The Promise is returned from the fetchData function, allowing the caller to work with it.
+When the Promise is resolved, the resolved value can be accessed through the .then() method when consuming the Promise.
+Here's an example of how you can use the fetchData function:
+
+javascript
+Copy code
+fetchData("https://example.com/api/data")
+  .then((result) => {
+    console.log(result); // Output: "Data from https://example.com/api/data"
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+In this example, we call the fetchData function with an endpoint argument. We then use the .then() method to handle the resolved value of the Promise, printing it to the console. If any error occurs during the Promise's lifecycle, it can be caught and handled using the .catch() method.
+
+Overall, the fetchData function is a convenient way to wrap an asynchronous operation in a Promise, allowing for more organized and controlled handling of asynchronous data fetching.
+
+
+// const wait = argumentTime => new Promise(resolve => {
+//     setTimeout(resolve, argumentTime);
+// });
+
+// wait(3000).then(() => console.log("Thanks for waiting!"));
 
 
 MORE EXPLAANTION
