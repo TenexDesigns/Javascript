@@ -9,7 +9,7 @@ promise = object that encapsulates the result of an asynchronous operation
           A promise has  2 parts producing(The code in new promise) & consuming(Where we call the .then()and .catch)
           The .then() catches the result if the opration is sucessful[What is returned by resolve] e.g Here it catches the values--> "File loade" if fileLoaded is true
           The .catch() is excuted if the opratioon fails, It catches what is returnd by reject e.g Here it catches the value returned by reject and --> "File Not Loaded", since fileloaded is false
-
+//PRODUCING CODE
 // ------------- Example 1 -------------
 const promise = new Promise((resolve, reject) => {
  
@@ -23,6 +23,7 @@ const promise = new Promise((resolve, reject) => {
     }
 });
  
+//Consuming code
 promise.then(value => console.log(value))
               .catch(error => console.log(error));
 
